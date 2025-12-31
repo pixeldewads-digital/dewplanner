@@ -1,7 +1,10 @@
-import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
+import Features from "@/components/Features";
+import HowItWorks from "@/components/HowItWorks";
+import WhyTeamsLove from "@/components/WhyTeamsLove";
+import CTA from "@/components/CTA";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -11,18 +14,17 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-cream-background">
-      <main className="flex-grow pt-20">
-        <section className="container mx-auto text-center py-20 px-4">
-          <h2
+      <main className="flex-grow">
+        <section className="container mx-auto text-center pt-32 pb-20 px-4">
+          <h1
             className={`text-5xl md:text-7xl font-extrabold text-dark-navy tracking-tighter ${plusJakartaSans.className}`}
           >
-            Plan Content. Track Flow.
+            Dew Flow Planner
+          </h1>
+          <p className="mt-4 text-lg text-dark-teal max-w-2xl mx-auto">
+            The ultimate content planning dashboard for PixelDew.
             <br />
-            Ship Consistently.
-          </h2>
-          <p className="mt-4 text-lg text-dark-navy max-w-2xl mx-auto">
-            Dew Flow Planner helps you manage content calendars, workloads, and
-            performance in one simple dashboard.
+            Plan, track, and optimize your content flow effortlessly.
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Button
@@ -37,41 +39,16 @@ export default function Home() {
                 variant="outline"
                 size="lg"
               >
-                View Demo
+                View Demo Dashboard
               </Button>
             </Link>
           </div>
         </section>
 
-        <section className="px-4">
-          <div className="container mx-auto bg-white p-8 rounded-t-2xl shadow-2xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="col-span-1 md:col-span-2 bg-soft-yellow-accent/20 p-6 rounded-lg">
-                <h3 className="font-bold text-dark-teal mb-4">
-                  Content Calendar
-                </h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
-                  <div className="h-20 bg-teal/30 rounded-md"></div>
-                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
-                  <div className="h-20 bg-teal/30 rounded-md"></div>
-                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
-                  <div className="h-20 bg-teal/30 rounded-md"></div>
-                </div>
-              </div>
-              <div className="col-span-1 bg-teal/20 p-6 rounded-lg">
-                <h3 className="font-bold text-dark-teal mb-4">
-                  Platform Breakdown
-                </h3>
-                <div className="space-y-3">
-                  <div className="w-full h-10 bg-primary-orange/80 rounded-md"></div>
-                  <div className="w-full h-10 bg-dark-teal/80 rounded-md"></div>
-                  <div className="w-full h-10 bg-teal/80 rounded-md"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Features />
+        <HowItWorks />
+        <WhyTeamsLove />
+        <CTA />
       </main>
     </div>
   );
