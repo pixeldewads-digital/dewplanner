@@ -11,11 +11,10 @@ export default function Logo() {
       <Image
         src="/logo/dew-flow-logo.png"
         alt="Dew Flow Planner Logo"
-        width={32}
-        height={32}
-        className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105"
+        width={40}
+        height={40}
+        className="w-10 h-10 md:w-11 md:h-11 transition-transform duration-300 group-hover:scale-105"
       />
-      <h1 className="text-xl font-bold text-dark-navy">Dew Flow Planner</h1>
     </Link>
   );
 }
