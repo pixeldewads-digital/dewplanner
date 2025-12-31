@@ -1,24 +1,20 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2">
-      <div className="w-8 h-8 bg-primary-orange rounded-full flex items-center justify-center">
-        <svg
-          className="w-5 h-5 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5 10l7-7m0 0l7 7m-7-7v18"
-          ></path>
-        </svg>
-      </div>
+    <Link
+      href="/"
+      className="flex items-center gap-2 group"
+      aria-label="Dew Flow Planner - Back to home"
+    >
+      <Image
+        src="/logo/dew-flow-logo.png"
+        alt="Dew Flow Planner Logo"
+        width={32}
+        height={32}
+        className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105"
+      />
       <h1 className="text-xl font-bold text-dark-navy">Dew Flow Planner</h1>
     </Link>
   );
