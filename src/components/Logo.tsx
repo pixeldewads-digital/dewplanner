@@ -1,6 +1,8 @@
+import Link from 'next/link';
+
 export default function Logo() {
   return (
-    <div className="flex items-center gap-2">
+    <Link href="/" className="flex items-center gap-2">
       <div className="w-8 h-8 bg-primary-orange rounded-full flex items-center justify-center">
         <svg
           className="w-5 h-5 text-white"
@@ -18,6 +20,6 @@ export default function Logo() {
         </svg>
       </div>
       <h1 className="text-xl font-bold text-dark-navy">Dew Flow Planner</h1>
-    </div>
+    </Link>
   );
 }

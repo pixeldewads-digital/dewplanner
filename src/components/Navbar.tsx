@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
@@ -16,6 +17,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +37,17 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        <Logo />
+        <div className="flex items-center gap-4">
+          <Logo />
+          {pathname !== '/' && (
+            <Link
+              href="/"
+              className="hidden md:block text-sm font-medium text-dark-navy/70 hover:text-primary-orange transition-colors"
+            >
+              &larr; Back to Home
+            </Link>
+          )}
+        </div>
 
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
