@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function NavbarLogo() {
+export function Navbar() {
   return (
     <Link
       href="/"
