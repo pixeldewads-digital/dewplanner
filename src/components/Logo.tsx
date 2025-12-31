@@ -17,7 +17,7 @@ export function Logo() {
         "
       >
         <Image
-          src="/logo/Dew flow logo.svg"
+          src="/logo/dew-flow-logo.svg"
           alt="Dew Flow Planner"
           fill
           className="object-contain"
