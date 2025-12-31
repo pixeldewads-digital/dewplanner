@@ -1,45 +1,60 @@
-interface ActionItem {
-    dueDate: string;
-    platform: string;
-    title: string;
-    status: string;
-    pic: string;
-    priority: 'High' | 'Medium' | 'Low';
-}
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+const actionData = [
+  { dueDate: "2024-05-28", platform: "Instagram", title: "Finalize Q3 Campaign", status: "Revision", pic: "Designer", priority: "High" },
+  { dueDate: "2024-05-29", platform: "YouTube", title: "Script for New Video", status: "Planned", pic: "Writer", priority: "High" },
+  { dueDate: "2024-05-30", platform: "TikTok", title: "Shoot Viral Trend Video", status: "In Progress", pic: "Editor", priority: "Medium" },
+  { dueDate: "2024-06-01", platform: "LinkedIn", title: "Publish Tech Article", status: "Scheduled", pic: "Admin", priority: "Low" },
+  { dueDate: "2024-06-02", platform: "Threads", title: "Brainstorm New Ideas", status: "Planned", pic: "Strategist", priority: "Medium" },
+];
 
 export default function ActionNeeded() {
-    const data: ActionItem[] = [
-      { dueDate: '2024-07-01', platform: 'Instagram', title: 'Finalize Q3 campaign visuals', status: 'Revision', pic: 'Designer', priority: 'High' },
-      { dueDate: '2024-07-02', platform: 'TikTok', title: 'Script for "Behind the Scenes" video', status: 'In Progress', pic: 'Writer', priority: 'High' },
-      { dueDate: '2024-07-03', platform: 'YouTube', title: 'Review first cut of tutorial', status: 'Revision', pic: 'Editor', priority: 'Medium' },
-      { dueDate: '2024-07-05', platform: 'LinkedIn', title: 'Draft article on industry trends', status: 'Planned', pic: 'Strategist', priority: 'Low' },
-    ]
-
-    const getPriorityClass = (priority: 'High' | 'Medium' | 'Low') => {
-      switch (priority) {
-        case 'High': return 'border-l-4 border-red-500'
-        case 'Medium': return 'border-l-4 border-yellow-500'
-        default: return 'border-l-4 border-gray-300'
-      }
-    }
-
-    return (
-      <div className="rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-4 text-2xl font-bold text-red-500">Action Needed</h2>
-        <div className="space-y-4">
-          {data.map((item, index) => (
-            <div key={index} className={`flex items-center justify-between rounded bg-gray-50 p-3 ${getPriorityClass(item.priority)}`}>
-              <div>
-                <p className="font-bold">{item.title}</p>
-                <p className="text-sm text-gray-500">{item.platform} - Due: {item.dueDate}</p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold">{item.status}</p>
-                <p className="text-sm text-gray-500">{item.pic}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  return (
+    <div>
+      <h2 className="text-2xl font-bold text-deep-orange mb-4">Action Needed</h2>
+      <div className="rounded-lg border">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-deep-orange/10">
+              <TableHead className="font-bold text-deep-orange">Due Date</TableHead>
+              <TableHead className="font-bold text-deep-orange">Platform</TableHead>
+              <TableHead className="font-bold text-deep-orange">Title</TableHead>
+              <TableHead className="font-bold text-deep-orange">Status</TableHead>
+              <TableHead className="font-bold text-deep-orange">PIC</TableHead>
+              <TableHead className="font-bold text-deep-orange">Priority</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {actionData.map((data, index) => (
+              <TableRow key={index} className={data.priority === "High" ? "bg-red-100/50" : ""}>
+                <TableCell>{data.dueDate}</TableCell>
+                <TableCell>{data.platform}</TableCell>
+                <TableCell className="font-medium">{data.title}</TableCell>
+                <TableCell>{data.status}</TableCell>
+                <TableCell>{data.pic}</TableCell>
+                <TableCell>
+                  <Badge
+                    variant={
+                      data.priority === "High" ? "destructive" :
+                      data.priority === "Medium" ? "secondary" : "outline"
+                    }
+                  >
+                    {data.priority}
+                  </Badge>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
-    )
-  }
+    </div>
+  );
+}

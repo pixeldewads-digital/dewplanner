@@ -1,30 +1,84 @@
-import Link from 'next/link'
+import Logo from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Link from "next/link";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+});
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-cream-background p-24">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-dark-navy">Dew Flow Planner</h1>
-        <p className="mt-4 text-lg text-dark-teal">
-          The ultimate content planning dashboard for PixelDew.
-          <br />
-          Plan, track, and optimize your content flow effortlessly.
-        </p>
-        <div className="mt-8">
-          <Link
-            href="/dashboard"
-            className="rounded-md bg-primary-orange px-6 py-3 text-lg font-semibold text-white shadow-md transition-colors hover:bg-deep-orange"
-          >
-            Get Started
-          </Link>
-          <Link
-            href="/dashboard"
-            className="ml-4 text-lg text-dark-teal underline"
-          >
-            View Demo Dashboard
-          </Link>
+    <div className="flex flex-col min-h-screen bg-cream-background">
+      <header className="py-6 px-4 md:px-6">
+        <div className="container mx-auto flex items-center justify-between">
+          <Logo />
         </div>
-      </div>
-    </main>
-  )
+      </header>
+
+      <main className="flex-grow">
+        <section className="container mx-auto text-center py-20 px-4">
+          <h2
+            className={`text-5xl md:text-7xl font-extrabold text-dark-navy tracking-tighter ${plusJakartaSans.className}`}
+          >
+            Plan Content. Track Flow.
+            <br />
+            Ship Consistently.
+          </h2>
+          <p className="mt-4 text-lg text-dark-navy max-w-2xl mx-auto">
+            Dew Flow Planner helps you manage content calendars, workloads, and
+            performance in one simple dashboard.
+          </p>
+          <div className="mt-8 flex justify-center gap-4">
+            <Button
+              className="bg-primary-orange hover:bg-deep-orange text-white font-bold py-3 px-6 rounded-lg text-lg"
+              size="lg"
+            >
+              Get Started
+            </Button>
+            <Link href="/dashboard">
+              <Button
+                className="bg-transparent hover:bg-soft-yellow-accent/20 text-primary-orange font-bold py-3 px-6 rounded-lg border-2 border-primary-orange text-lg"
+                variant="outline"
+                size="lg"
+              >
+                View Demo
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        <section className="px-4">
+          <div className="container mx-auto bg-white p-8 rounded-t-2xl shadow-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="col-span-1 md:col-span-2 bg-soft-yellow-accent/20 p-6 rounded-lg">
+                <h3 className="font-bold text-dark-teal mb-4">
+                  Content Calendar
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
+                  <div className="h-20 bg-teal/30 rounded-md"></div>
+                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
+                  <div className="h-20 bg-teal/30 rounded-md"></div>
+                  <div className="h-20 bg-soft-yellow-accent/40 rounded-md"></div>
+                  <div className="h-20 bg-teal/30 rounded-md"></div>
+                </div>
+              </div>
+              <div className="col-span-1 bg-teal/20 p-6 rounded-lg">
+                <h3 className="font-bold text-dark-teal mb-4">
+                  Platform Breakdown
+                </h3>
+                <div className="space-y-3">
+                  <div className="w-full h-10 bg-primary-orange/80 rounded-md"></div>
+                  <div className="w-full h-10 bg-dark-teal/80 rounded-md"></div>
+                  <div className="w-full h-10 bg-teal/80 rounded-md"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }

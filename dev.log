@@ -1,13 +1,19 @@
 
-> temp-app@0.1.0 dev
+> dew-flow-planner@0.1.0 dev
 > next dev
 
-▲ Next.js 16.1.1 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://192.168.0.2:3000
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+ ⚠ Port 3002 is in use, trying 3003 instead.
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3003
 
-✓ Starting...
-✓ Ready in 1045ms
-○ Compiling / ...
- GET / 200 in 6.7s (compile: 6.3s, render: 411ms)
- GET /dashboard 200 in 758ms (compile: 511ms, render: 247ms)
+ ✓ Starting...
+ ✓ Ready in 5s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.8s (525 modules)
+ ✓ Compiled in 644ms (256 modules)
+ GET / 200 in 7446ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 4.8s (537 modules)
+ GET /dashboard 200 in 5327ms
