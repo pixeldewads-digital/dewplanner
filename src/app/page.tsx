@@ -11,13 +11,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-cream-background">
-      <header className="py-6 px-4 md:px-6">
-        <div className="container mx-auto flex items-center justify-between">
-          <Logo />
-        </div>
-      </header>
-
-      <main className="flex-grow">
+      <main className="flex-grow pt-20">
         <section className="container mx-auto text-center py-20 px-4">
           <h2
             className={`text-5xl md:text-7xl font-extrabold text-dark-navy tracking-tighter ${plusJakartaSans.className}`}
