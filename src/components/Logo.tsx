@@ -9,11 +9,11 @@ export default function Logo() {
       aria-label="Dew Flow Planner - Back to home"
     >
       <Image
-        src="/logo/dew-flow-logo.png"
+        src="/logo/Dew flow logi.svg"
         alt="Dew Flow Planner Logo"
         width={40}
         height={40}
-        className="w-10 h-10 md:w-11 md:h-11" priority
+        className="h-10 md:h-11 w-auto"
       />
     </Link>
   );
