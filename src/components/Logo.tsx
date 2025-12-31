@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function Logo() {
+export default function Logo() {
   return (
     <Link
       href="/"
@@ -9,14 +9,9 @@ export function Logo() {
       className="flex items-center"
     >
       <div
-        className="
-          relative
-          h-7 w-7
-          sm:h-8 sm:w-8
-          lg:h-10 lg:w-10
-        "
+        className="relative h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10"
       >
-        <Image
+       <Image
           src="/logo/dew-flow-logo.svg"
           alt="Dew Flow Planner"
           fill
