@@ -1,18 +1,29 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Logo() {
+export function NavbarLogo() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3"
-      aria-label="Dew Flow Planner - Back to home"
+      aria-label="Back to Home"
+      className="flex items-center"
     >
-      <Image
-        src="/logo/Dew flow logo.svg"
-        alt="Dew Flow Planner Logo"
-        className="h-10 md:h-11 w-auto"
-      />
+      <div
+        className="
+          relative
+          h-7 w-7
+          sm:h-8 sm:w-8
+          lg:h-10 lg:w-10
+        "
+      >
+        <Image
+          src="/logo/Dew flow logo.svg"
+          alt="Dew Flow Planner"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
     </Link>
   );
 }
