@@ -29,8 +29,9 @@ export default function Navbar() {
   }, []);
 
   return (
+      
     <header
-      className={`h-16 md:h-18 flex items-center ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         hasScrolled
           ? 'border-b bg-cream-background/80 backdrop-blur-lg shadow-sm'
           : 'bg-cream-background'
