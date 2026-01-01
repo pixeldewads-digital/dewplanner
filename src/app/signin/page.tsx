@@ -32,7 +32,7 @@ export default function SignInPage() {
         if (result?.error) {
             setError('Invalid email or password.');
         } else if (result?.ok) {
-            router.push('/dashboard');
+            router.push('/app');
         }
     } catch (err) {
         setError('An unexpected error occurred.');
