@@ -1,7 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
-import { prisma } from '@/lib/prisma';
+import { Prisma } from "@prisma/client";
 
 export async function POST(req: Request) {
   try {
@@ -21,24 +21,26 @@ export async function POST(req: Request) {
 
     const hashedPassword = await hash(password, 10);
 
-    const user = await prisma.$transaction(async (tx) => {
-      const newUser = await tx.user.create({
-        data: {
-          name,
-          email,
-          password: hashedPassword,
-        },
-      });
-
-      await tx.workspace.create({
-        data: {
-          name: `${name}'s Workspace`,
-          ownerId: newUser.id,
-        },
-      });
-
-      return newUser;
+const user = await prisma.$transaction(
+  async (tx: Prisma.TransactionClient) => {
+    const newUser = await tx.user.create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
     });
+
+    const workspace = await tx.workspace.create({
+      data: {
+        name: "My Workspace",
+        ownerId: newUser.id,
+      },
+    });
+
+    return newUser;
+  }
+);
 
     return NextResponse.json({ user: { id: user.id, name: user.name, email: user.email } }, { status: 201 });
   } catch (error) {
