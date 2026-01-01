@@ -1,7 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
-import { Prisma } from 'prisma/schema.prisma';
+import { Prisma } from 'prisma-client-js';
 
 export async function POST(req: Request) {
   try {
