@@ -1,33 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Logo() {
   return (
     <Link
       href="/"
-      aria-label="Back to Home"
-      className="flex items-center"
+      className="flex items-center gap-2 group"
+      aria-label="Dew Flow Planner - Back to home"
     >
-      <div
-className="
-  relative
-  h-7 w-7
-  sm:h-8 sm:w-8
-  lg:h-10 lg:w-10
-  transition-transform duration-200
-  hover:scale-105
-  focus-visible:outline-none
-  focus-visible:ring-2
-  focus-visible:ring-orange-500
-"      >
-       <Image
-          src="/logo/dew-flow-logo.svg"
-          alt="Dew Flow Planner"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
+      <Image
+        src="/logo/dew-flow-logo.png"
+        alt="Dew Flow Planner Logo"
+        width={32}
+        height={32}
+        className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300 group-hover:scale-105"
+      />
+      <h1 className="text-xl font-bold text-dark-navy">Dew Flow Planner</h1>
     </Link>
   );
 }

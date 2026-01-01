@@ -28,7 +28,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
- return (
+  return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         hasScrolled
