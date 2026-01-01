@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
-import { compare } from "bcryptjs"; // ✅ ganti dari 'bcrypt' ke 'bcryptjs' biar aman di Vercel
+import { compare } from "bcrypt"; // ✅ ganti dari 'bcrypt' ke 'bcryptjs' biar aman di Vercel
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
