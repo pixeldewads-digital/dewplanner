@@ -1,52 +1,24 @@
-
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
-import { Prisma } from "@prisma/client";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 
+const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
-    const { name, email, password } = await req.json();
-
-    if (!name || !email || !password) {
-      return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+    const body = await req.json();
+    // ... your logic, e.g. create user
+  } catch (error: unknown) {
+    if (error instanceof PrismaClientKnownRequestError) {
+      // handle unique constraint or other Prisma runtime errors
+      if (error.code === 'P2002') {
+        return NextResponse.json({ message: 'User already exists' }, { status: 409 });
+      }
     }
-
-    const existingUser = await prisma.user.findUnique({
-      where: { email: email },
-    });
-
-    if (existingUser) {
-      return NextResponse.json({ message: 'User with this email already exists' }, { status: 409 });
-    }
-
-    const hashedPassword = await hash(password, 10);
-
-const user = await prisma.$transaction(
-  async (tx: Prisma.TransactionClient) => {
-    const newUser = await tx.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-      },
-    });
-
-    const workspace = await tx.workspace.create({
-      data: {
-        name: "My Workspace",
-        ownerId: newUser.id,
-      },
-    });
-
-    return newUser;
-  }
-);
-
-    return NextResponse.json({ user: { id: user.id, name: user.name, email: user.email } }, { status: 201 });
-  } catch (error) {
-    console.error('Registration error:', error);
-    return NextResponse.json({ message: 'An unexpected error occurred.' }, { status: 500 });
+    // rethrow or return a 500
+    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
