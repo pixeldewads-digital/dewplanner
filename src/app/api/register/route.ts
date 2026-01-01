@@ -8,15 +8,30 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    // ... your logic, e.g. create user
+    const { email, password, name } = body;
+
+    if (!email || !password) {
+      return NextResponse.json({ message: 'Missing email or password' }, { status: 400 });
+    }
+
+    const hashedPassword = await hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+        ...(name ? { name } : {}),
+      },
+    });
+
+    return NextResponse.json({ id: user.id }, { status: 201 });
   } catch (error: unknown) {
     if (error instanceof PrismaClientKnownRequestError) {
-      // handle unique constraint or other Prisma runtime errors
+      // Unique constraint failed (duplicate email)
       if (error.code === 'P2002') {
         return NextResponse.json({ message: 'User already exists' }, { status: 409 });
       }
     }
-    // rethrow or return a 500
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
