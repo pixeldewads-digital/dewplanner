@@ -1,11 +1,32 @@
-version: "2.40.3"
-
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: dewflow_db
+    environment:
+      POSTGRES_USER: dewflow
+      POSTGRES_PASSWORD: dewflowpass
+      POSTGRES_DB: dewflow
+    volumes:
+      - dewflow_db_data:/var/lib/postgresql/data
+    networks:
+      - dewflow_net
+    restart: unless-stopped
+
   app:
     build: .
-    container_name: dewplanner_app
+    container_name: dewflow_app
     env_file:
       - .env.production
+    depends_on:
+      - db
+    networks:
+      - dewflow_net
+    restart: unless-stopped
     ports:
       - "3000:3000"
-    restart: unless-stopped
+
+volumes:
+  dewflow_db_data:
+
+networks:
+  dewflow_net:
