@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { compare } from "bcrypt"; // ✅ ganti dari 'bcrypt' ke 'bcryptjs' biar aman di Vercel
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   providers: [
