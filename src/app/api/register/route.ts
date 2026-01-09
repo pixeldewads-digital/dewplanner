@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
-import { PrismaClient } from '@prisma/client';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -26,7 +25,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ id: user.id }, { status: 201 });
   } catch (error: unknown) {
-    if (error instanceof PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
       // Unique constraint failed (duplicate email)
       if (error.code === 'P2002') {
         return NextResponse.json({ message: 'User already exists' }, { status: 409 });
